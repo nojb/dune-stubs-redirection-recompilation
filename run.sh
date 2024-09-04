@@ -1,13 +1,9 @@
 #!/bin/bash
 
-set -euox pipefail
+set -x
 
-dune build # should show warning
-
+dune build
 tmpfile=$(mktemp)
-
 dune build 2>$tmpfile
-
 cat $tmpfile
-
 rm -f $tmpfile
