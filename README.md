@@ -13,9 +13,7 @@ Output on my computer:
 ```
 $ cat run.sh
 #!/bin/bash
-
 set -x
-
 dune build
 tmpfile=$(mktemp)
 dune build 2>$tmpfile
