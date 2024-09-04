@@ -11,6 +11,20 @@ Dune rebuilds the C stubs the second time around.
 Output on my computer:
 
 ```
+$ cat run.sh
+#!/bin/bash
+
+set -euox pipefail
+
+dune build # should show warning
+
+tmpfile=$(mktemp)
+
+dune build 2>$tmpfile
+
+cat $tmpfile
+
+rm -f $tmpfile
 $ ./run.sh
 + dune build
 stubs.c:1:2: warning: #warning "foo" [-Wcpp]
