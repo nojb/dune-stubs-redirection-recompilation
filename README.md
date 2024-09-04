@@ -7,3 +7,21 @@ When executing `run.sh`, a tiny library with C stubs is compiled twice by doing
 build command is redirected to a temporary file. Normally, one would not expect
 to have any recompilation the second time around; however, it turns out that
 Dune rebuilds the C stubs the second time around.
+
+Output on my computer:
+
+```
+$ ./run.sh
++ dune build
+stubs.c:1:2: warning: #warning "foo" [-Wcpp]
+    1 | #warning "foo"
+      |  ^~~~~~~
+++ mktemp
++ tmpfile=/tmp/tmp.cB53WNBajm
++ dune build
++ cat /tmp/tmp.cB53WNBajm
+stubs.c:1:2: warning: #warning "foo" [-Wcpp]
+    1 | #warning "foo"
+      |  ^~~~~~~
++ rm -f /tmp/tmp.cB53WNBajm
+```
